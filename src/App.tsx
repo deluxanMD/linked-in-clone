@@ -1,7 +1,7 @@
 import "./App.css";
 
-function App() {
-  return <div className="App" data-testid="App.Container"></div>;
-}
+const App = () => {
+  return <div className="App" data-testid="App.Container" style={{ marginTop: 10 }}></div>;
+};
 
 export default App;
