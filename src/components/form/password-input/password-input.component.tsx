@@ -1,26 +1,56 @@
-import { TextField } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
+import HelperText from "../helper-text/helper-text.component";
 
 type PasswordInputType = {
   label: string;
+  name: string;
+  helperText?: string;
 };
 
-const PasswordInput = ({ label }: PasswordInputType) => {
+const PasswordInput = ({ label, name, helperText, ...rest }: PasswordInputType) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const { control } = useForm();
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event: any) => {
+    event.preventDefault();
+  };
 
   return (
     <Controller
-      name={label}
+      name={name}
       control={control}
-      rules={{ required: true }}
-      render={({ field }) => (
+      render={({ field: { ref, ...fieldRest }, fieldState: { error } }) => (
         <TextField
-          id={label}
-          variant="outlined"
-          label={label}
+          {...fieldRest}
+          type={showPassword ? "text" : "password"}
           size="small"
-          type="password"
-          {...field}
+          label={label}
+          inputRef={ref}
+          error={!!error}
+          helperText={<HelperText error={error} helperText={helperText} />}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                  data-testid="PasswordField.IconButton"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
+          {...rest}
         />
       )}
     />
