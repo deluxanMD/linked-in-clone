@@ -19,10 +19,6 @@ const PasswordInput = ({ label, name, helperText, ...rest }: PasswordInputType) 
     setShowPassword(!showPassword);
   };
 
-  const handleMouseDownPassword = (event: any) => {
-    event.preventDefault();
-  };
-
   return (
     <Controller
       name={name}
@@ -41,9 +37,8 @@ const PasswordInput = ({ label, name, helperText, ...rest }: PasswordInputType) 
               <InputAdornment position="end">
                 <IconButton
                   onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
                   edge="end"
-                  data-testid="PasswordField.IconButton"
+                  data-testid="PasswordInput.IconButton"
                 >
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>

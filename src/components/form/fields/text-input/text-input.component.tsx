@@ -3,15 +3,16 @@ import { useForm, Controller } from "react-hook-form";
 
 type TextInputType = {
   label: string;
+  name: string;
   type?: string;
 };
 
-const TextInput = ({ label, type }: TextInputType) => {
+const TextInput = ({ label, type = "text", name }: TextInputType) => {
   const { control } = useForm();
 
   return (
     <Controller
-      name={label}
+      name={name}
       control={control}
       rules={{ required: true }}
       render={({ field }) => (
