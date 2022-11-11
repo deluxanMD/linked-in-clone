@@ -1,12 +1,11 @@
 import { TextField } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 
-type TextInputType = {
+type PasswordInputType = {
   label: string;
-  type?: string;
 };
 
-const TextInput = ({ label, type }: TextInputType) => {
+const PasswordInput = ({ label }: PasswordInputType) => {
   const { control } = useForm();
 
   return (
@@ -20,7 +19,7 @@ const TextInput = ({ label, type }: TextInputType) => {
           variant="outlined"
           label={label}
           size="small"
-          type={type}
+          type="password"
           {...field}
         />
       )}
@@ -28,4 +27,4 @@ const TextInput = ({ label, type }: TextInputType) => {
   );
 };
 
-export default TextInput;
+export default PasswordInput;

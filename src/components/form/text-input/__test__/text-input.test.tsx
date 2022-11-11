@@ -3,14 +3,8 @@ import TextInput from "components/form/text-input/text-input.component";
 
 describe("TextInput", () => {
   it("should renders the component", () => {
-    render(<TextInput hint="type here..." value="" handleChange={() => {}} />);
-    const inputElement = screen.getByTestId("TextInput");
+    render(<TextInput label="label" />);
+    const inputElement = screen.getByLabelText(/label/i);
     expect(inputElement).toBeInTheDocument();
-  });
-
-  it("should contains proper placeholder", () => {
-    render(<TextInput hint="type here..." value="" handleChange={() => {}} />);
-    const inputEl = screen.getByPlaceholderText(/type here/i);
-    expect(inputEl).toBeInTheDocument();
   });
 });
